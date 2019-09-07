@@ -496,16 +496,11 @@ The recommended method to clean up the remote media cache is a cron job that run
 
 ```sh
 RAILS_ENV=production
-@daily cd /home/mastodon/live && /home/mastodon/.rbenv/shims/bundle exec rake mastodon:media:remove_remote
+@daily cd /home/mastodon/live && /home/mastodon/live/bin/tootctl media remove
 ```
 
-That rake task removes cached remote media attachments that are older than NUM_DAYS, NUM_DAYS defaults to 7 days (1 week) if not specified. NUM_DAYS is another environment variable so you can specify it like so:
-
-```sh
-RAILS_ENV=production
-NUM_DAYS=14
-@daily cd /home/mastodon/live && /home/mastodon/.rbenv/shims/bundle exec rake mastodon:media:remove_remote
-```
+That command removes cached remote media attachments that are older than 7 days.
+```tootctl media remove --help``` for options.
 
 ## Email Service
 
